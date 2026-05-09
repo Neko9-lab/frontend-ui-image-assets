@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontend UI Image Assets"
+  short_description: "Generate frontend-ready UI images."
+  default_prompt: "Use $frontend-ui-image-assets to generate project-ready image assets for this frontend and wire them into the UI."
+
+policy:
+  allow_implicit_invocation: true
