@@ -1,8 +1,8 @@
 # Frontend UI Image Assets
 
-生成可直接用于前端项目的位图视觉素材，例如 hero 背景、产品图、空状态插画、卡片封面、头像、纹理和游戏场景图。这个仓库既可以作为 Codex skill 安装使用，也可以直接运行内置 Python 脚本生成图片。
+生成可直接用于前端项目的位图视觉素材，例如 hero 背景、产品图、空状态插画、卡片封面、头像、纹理和游戏场景图。这个仓库既可以作为 Codex 或 Claude Code skill 安装使用，也可以直接运行内置 Python 脚本生成图片。
 
-Generate frontend-ready raster image assets for websites, web apps, dashboards, games, and prototypes, including hero backgrounds, product imagery, empty-state illustrations, card covers, avatars, textures, and scene art. This repository can be installed as a Codex skill or used directly through the bundled Python script.
+Generate frontend-ready raster image assets for websites, web apps, dashboards, games, and prototypes, including hero backgrounds, product imagery, empty-state illustrations, card covers, avatars, textures, and scene art. This repository can be installed as a Codex or Claude Code skill, or used directly through the bundled Python script.
 
 ## 中文说明
 
@@ -34,6 +34,44 @@ git clone https://github.com/Neko9-lab/frontend-ui-image-assets.git "$env:USERPR
 
 ```text
 使用 $frontend-ui-image-assets 给这个 Vite 页面生成一张 hero 背景图，并接入到页面里。
+```
+
+### 安装为 Claude Code Skill
+
+Claude Code 支持从个人目录 `~/.claude/skills/` 和项目目录 `.claude/skills/` 自动发现包含 `SKILL.md` 的 skill。更多细节见 [Claude Code Agent Skills 文档](https://docs.claude.com/en/docs/claude-code/skills)。
+
+个人安装，适合在所有项目中使用：
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/Neko9-lab/frontend-ui-image-assets.git ~/.claude/skills/frontend-ui-image-assets
+```
+
+Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
+git clone https://github.com/Neko9-lab/frontend-ui-image-assets.git "$env:USERPROFILE\.claude\skills\frontend-ui-image-assets"
+```
+
+项目级安装，适合把 skill 和当前项目一起共享给团队：
+
+```bash
+mkdir -p .claude/skills
+git submodule add https://github.com/Neko9-lab/frontend-ui-image-assets.git .claude/skills/frontend-ui-image-assets
+git commit -m "Add frontend UI image assets skill"
+```
+
+安装后重启 Claude Code，或重新打开会话，让它重新加载 skills。Claude Code 的 skills 是模型自动调用的，不需要斜杠命令；可以直接这样请求：
+
+```text
+生成一个适合这个 Next.js 首页的 hero 背景图，并把图片保存到 public/generated/ 后接入页面。
+```
+
+也可以让 Claude Code 列出当前可用 skills：
+
+```text
+List all available Skills
 ```
 
 ### 直接使用脚本
@@ -159,6 +197,44 @@ Restart or refresh Codex so the skill can be discovered. Then invoke it in a pro
 
 ```text
 Use $frontend-ui-image-assets to generate a hero background for this Vite page and wire it into the UI.
+```
+
+### Install as a Claude Code Skill
+
+Claude Code automatically discovers skills with a `SKILL.md` file from the personal `~/.claude/skills/` directory and the project-level `.claude/skills/` directory. See the [Claude Code Agent Skills documentation](https://docs.claude.com/en/docs/claude-code/skills) for details.
+
+Personal install, available across your projects:
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/Neko9-lab/frontend-ui-image-assets.git ~/.claude/skills/frontend-ui-image-assets
+```
+
+Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
+git clone https://github.com/Neko9-lab/frontend-ui-image-assets.git "$env:USERPROFILE\.claude\skills\frontend-ui-image-assets"
+```
+
+Project install, useful when the skill should be shared with the current repository:
+
+```bash
+mkdir -p .claude/skills
+git submodule add https://github.com/Neko9-lab/frontend-ui-image-assets.git .claude/skills/frontend-ui-image-assets
+git commit -m "Add frontend UI image assets skill"
+```
+
+Restart Claude Code or start a new session after installation so it reloads available skills. Claude Code skills are model-invoked, so you do not need a slash command. Ask for the frontend asset directly:
+
+```text
+Generate a hero background for this Next.js homepage, save it to public/generated/, and wire it into the page.
+```
+
+You can also ask Claude Code to list available skills:
+
+```text
+List all available Skills
 ```
 
 ### Use the Script Directly
